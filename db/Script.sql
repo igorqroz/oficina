@@ -1,65 +1,65 @@
 --tabelas e sequencias
-create table
+CREATE TABLE
     clientes (
-        id int not null primary key,
-        nome varchar(50),
-        cpf varchar(20),
-        contato varchar(20)
-    ) create sequence clientes_id_seq
-alter table clientes
-alter column id
-set default nextval ('clientes_id_seq');
+        id INT NOT NULL PRIMARY KEY,
+        nome VARCHAR(50),
+        cpf VARCHAR(20),
+        contato VARCHAR(20)
+    ) CREATE SEQUENCE clientes_id_seq
+ALTER TABLE clientes
+ALTER column id
+SET default nextval ('clientes_id_seq');
 
-create table
+CREATE TABLE
     veiculos (
-        id int not null primary key,
-        cliente_id int references clientes (id),
-        modelo varchar(20),
-        placa varchar(10),
-        ano int
-    ) create sequence veiculos_id_seq
-alter table veiculos
-alter column id
-set default nextval ('veiculos_id_seq');
+        id INT NOT NULL PRIMARY KEY,
+        cliente_id INT REFERENCES clientes (id),
+        modelo VARCHAR(20),
+        placa VARCHAR(10),
+        ano INT
+    ) CREATE SEQUENCE veiculos_id_seq
+ALTER TABLE veiculos
+ALTER column id
+SET default nextval ('veiculos_id_seq');
 
-create table
+CREATE TABLE
     mecanicos (
-        id int not null primary key,
-        nome varchar(50),
-        especialidade varchar(50)
-    ) create sequence mecanicos_id_seq
-alter table mecanicos
-alter column id
-set default nextval ('mecanicos_id_seq');
+        id INT NOT NULL PRIMARY KEY,
+        nome VARCHAR(50),
+        especialidade VARCHAR(50)
+    ) CREATE SEQUENCE mecanicos_id_seq
+ALTER TABLE mecanicos
+ALTER column id
+SET default nextval ('mecanicos_id_seq');
 
-create table
+CREATE TABLE
     servicos (
-        id int not null primary key,
-        descricao varchar(100),
-        preco real
-    ) create sequence servicos_id_seq
-alter table servicos
-alter column id
-set default nextval ('servicos_id_seq');
+        id INT NOT NULL PRIMARY KEY,
+        descricao VARCHAR(100),
+        preco REAL
+    ) CREATE SEQUENCE servicos_id_seq
+ALTER TABLE servicos
+ALTER column id
+SET default nextval ('servicos_id_seq');
 
-create table
+CREATE TABLE
     ordens_servico (
-        id int not null primary key,
+        id INT NOT NULL PRIMARY KEY,
         data timestamp,
-        veiculo_id int references veiculos (id),
-        mecanico_id int references mecanicos (id)
-    ) create sequence ordens_servico_id_seq
-alter table ordens_servico
-alter column id
-set default nextval ('ordens_servico_id_seq');
+        veiculo_id INT REFERENCES veiculos (id),
+        mecanico_id INT REFERENCES mecanicos (id)
+    ) CREATE SEQUENCE ordens_servico_id_seq
+ALTER TABLE ordens_servico
+ALTER column id
+SET default nextval ('ordens_servico_id_seq');
 
-create table
+CREATE TABLE
     itens_os (
-        id int not null primary key,
-        ordens_servicos_id int references ordens_servico (id),
-        servicos_id int references servicos,
-        preco_praticado real
-    ) create sequence itens_os_id_seq
-alter table itens_os
-alter column id
-set default nextval ('itens_os_id_seq');
+        id INT NOT NULL PRIMARY KEY,
+        ordens_servicos_id INT REFERENCES ordens_servico (id),
+        servicos_id INT REFERENCES servicos,
+        preco_praticado REAL
+    ) CREATE SEQUENCE itens_os_id_seq
+ALTER TABLE itens_os
+ALTER column id
+SET default nextval ('itens_os_id_seq');
